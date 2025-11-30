@@ -41,20 +41,36 @@ btnNo.addEventListener("touchstart", moverBotonNo);
 
 function moverBotonNo() {
     const contenedor = document.querySelector(".container");
+    const rectSi = btnSi.getBoundingClientRect();
+    const rectNo = btnNo.getBoundingClientRect();
 
-    // límites dentro del contenedor
-    const maxX = contenedor.clientWidth - btnNo.offsetWidth - 10;
-    const maxY = contenedor.clientHeight - btnNo.offsetHeight - 10;
-
-    // posición aleatoria pero segura
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
-
-    // cambiar posición relativa al contenedor
+    // Pasar a posición absoluta solo cuando huye
     btnNo.style.position = "absolute";
+
+    // Límites del contenedor
+    const maxX = contenedor.clientWidth - btnNo.offsetWidth - 15;
+    const maxY = contenedor.clientHeight - btnNo.offsetHeight - 15;
+
+    let x, y;
+
+    do {
+        // Nueva posición aleatoria
+        x = Math.random() * maxX;
+        y = Math.random() * maxY;
+
+        // Verificar que NO quede cerca del botón “Sí”
+        const distancia = Math.hypot(
+            (rectSi.left - (rectNo.left + x)),
+            (rectSi.top - (rectNo.top + y))
+        );
+
+        // Repetir si está muy cerca (evita solapamiento en móvil)
+    } while (distancia < 120); // puedes subir a 150 si quieres que huya más
+
     btnNo.style.left = `${x}px`;
     btnNo.style.top = `${y}px`;
 }
+
 
 
 // ------------------------------
