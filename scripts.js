@@ -33,43 +33,58 @@ function enviarConfirmacion(){
 // BOTÓN "NO" QUE HUYE (PC + MÓVIL)
 // ------------------------------
 
-// Para mouse
-btnNo.addEventListener("mouseover", moverBotonNo);
 
-// Para móviles (cuando lo intentan tocar)
-btnNo.addEventListener("touchstart", moverBotonNo);
+// PC (mouse)
+btnNo.addEventListener("mouseover", moverBotonNoPC);
 
-function moverBotonNo() {
+// Móvil (touch)
+btnNo.addEventListener("touchstart", moverBotonNoMovil);
+
+function moverBotonNoPC() {
+    const contenedor = document.querySelector(".container");
+
+    btnNo.style.position = "absolute";
+
+    const maxX = contenedor.clientWidth - btnNo.offsetWidth - 10;
+    const maxY = contenedor.clientHeight - btnNo.offsetHeight - 10;
+
+    // Salto exagerado para PC
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    btnNo.style.left = `${x}px`;
+    btnNo.style.top = `${y}px`;
+}
+
+
+function moverBotonNoMovil() {
     const contenedor = document.querySelector(".container");
     const rectSi = btnSi.getBoundingClientRect();
     const rectNo = btnNo.getBoundingClientRect();
 
-    // Pasar a posición absoluta solo cuando huye
     btnNo.style.position = "absolute";
 
-    // Límites del contenedor
     const maxX = contenedor.clientWidth - btnNo.offsetWidth - 15;
     const maxY = contenedor.clientHeight - btnNo.offsetHeight - 15;
 
-    let x, y;
+    let x, y, distancia;
 
     do {
         // Nueva posición aleatoria
         x = Math.random() * maxX;
         y = Math.random() * maxY;
 
-        // Verificar que NO quede cerca del botón “Sí”
-        const distancia = Math.hypot(
-            (rectSi.left - (rectNo.left + x)),
-            (rectSi.top - (rectNo.top + y))
+        // Distancia del botón SI
+        distancia = Math.hypot(
+            rectSi.left - (rectNo.left + x),
+            rectSi.top - (rectNo.top + y)
         );
-
-        // Repetir si está muy cerca (evita solapamiento en móvil)
-    } while (distancia < 120); // puedes subir a 150 si quieres que huya más
+    } while (distancia < 140); // aleja el botón en móviles
 
     btnNo.style.left = `${x}px`;
     btnNo.style.top = `${y}px`;
 }
+
 
 
 
