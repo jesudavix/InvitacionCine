@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación Especial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="title">💖 Nitaa… 💖</h1>
+        <p class="message">Tengo algo especial para preguntarte…</p>
+
+        <button id="btnMostrar">Ver Sorpresa</button>
+
+        <div id="invitacion" class="hidden">
+            <h2 class="subtitle">¿Quieres ir conmigo el jueves a ver…? 🎬🍿</h2>
+            
+            <img src="img/poster.jpg" class="poster">
+            
+            <h3 class="pregunta">✨ ¿Aceptas ir a ver Zootopia 2 conmigo? ✨</h3>
+
+            <div class="botones">
+                <button id="btnSi">¡Sí, mi amor! 💕</button>
+                <button id="btnNo">No 😢</button>
+            </div>
+
+            <p id="respuesta"></p>
+        </div>
+    </div>
+
+    <!-- Canvas del confetti -->
+    <canvas id="confetti"></canvas>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
