@@ -57,7 +57,8 @@ function moverBotonNoPC() {
 }
 
 
-function moverBotonNoMovil() {
+function moverBotonNoMovil(e) {
+    e.preventDefault();
     const contenedor = document.querySelector(".container");
     const rectSi = btnSi.getBoundingClientRect();
     const rectNo = btnNo.getBoundingClientRect();
