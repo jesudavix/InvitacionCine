@@ -40,16 +40,22 @@ btnNo.addEventListener("mouseover", moverBotonNo);
 btnNo.addEventListener("touchstart", moverBotonNo);
 
 function moverBotonNo() {
-    const maxX = window.innerWidth - btnNo.offsetWidth - 30;
-    const maxY = window.innerHeight - btnNo.offsetHeight - 30;
+    const contenedor = document.querySelector(".container");
 
+    // límites dentro del contenedor
+    const maxX = contenedor.clientWidth - btnNo.offsetWidth - 10;
+    const maxY = contenedor.clientHeight - btnNo.offsetHeight - 10;
+
+    // posición aleatoria pero segura
     const x = Math.random() * maxX;
     const y = Math.random() * maxY;
 
-    btnNo.style.position = "fixed";
+    // cambiar posición relativa al contenedor
+    btnNo.style.position = "absolute";
     btnNo.style.left = `${x}px`;
     btnNo.style.top = `${y}px`;
 }
+
 
 // ------------------------------
 // CONFETTI ANIMATION
